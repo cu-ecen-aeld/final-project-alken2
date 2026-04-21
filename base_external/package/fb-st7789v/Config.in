@@ -1,0 +1,6 @@
+config BR2_PACKAGE_FB_ST7789V
+    bool "fb-st7789v"
+    depends on BR2_LINUX_KERNEL
+    help
+      Adafruit ST7789V out-of-tree kernel module (fb_st7789v and
+      st7789v_ada) for use with Adafruit PiTFT displays.

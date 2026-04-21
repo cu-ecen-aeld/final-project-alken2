@@ -1,0 +1,2 @@
+source "$BR2_EXTERNAL_project_base_PATH/package/tic80/Config.in"
+source "$BR2_EXTERNAL_project_base_PATH/package/fb-st7789v/Config.in"

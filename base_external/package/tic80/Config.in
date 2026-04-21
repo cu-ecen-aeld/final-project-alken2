@@ -1,0 +1,8 @@
+config BR2_PACKAGE_TIC80
+    bool "tic80"
+    depends on BR2_PACKAGE_SDL2
+    depends on BR2_TOOLCHAIN_HAS_THREADS
+    select BR2_PACKAGE_LIBCURL
+    help
+      TIC-80 fantasy computer.
+      https://github.com/nesbox/TIC-80
