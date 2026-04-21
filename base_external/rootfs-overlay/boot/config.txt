@@ -1,0 +1,9 @@
+gpu_mem=128
+
+# configs referenced from the adafruit-pitft-helper script
+hdmi_force_hotplug=1
+dtparam=spi=on
+dtparam=i2c1=on
+dtparam=i2c_arm=on
+dtoverlay=st7789v_240x320,fps=60,dc-gpio=25,backlight-gpio=22
+kernel=zImage

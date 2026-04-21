@@ -1,0 +1,17 @@
+#!/bin/sh
+
+# Referenced from Claude Chat Log: https://claude.ai/share/dc9a855f-d345-41b9-8189-024ec6f2104e
+case "$1" in
+  start)
+    echo "Loading kernel modules..."
+    modprobe spi-bcm2835
+    modprobe fbtft
+    modprobe fb_st7789v rotate=90 fps=60 bgr=1
+    ;;
+  stop)
+    ;;
+  *)
+    echo "Usage: $0 {start|stop}"
+    exit 1
+    ;;
+esac

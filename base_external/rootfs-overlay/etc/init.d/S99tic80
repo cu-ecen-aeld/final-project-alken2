@@ -1,0 +1,22 @@
+#!/bin/sh
+
+# Referenced from Claude Chat Log: https://claude.ai/share/dcab2d1f-6627-4877-890a-af3e6facc60e
+case "$1" in
+  start)
+    echo "Starting TIC-80..."
+    # Set display - needed for SDL
+    export SDL_VIDEODRIVER=kmsdrm
+    export SDL_FBDEV=/dev/fb1
+    export HOME=/root
+    # Run in background, log output
+    tic80 &
+    ;;
+  stop)
+    echo "Stopping TIC-80..."
+    kill $(pidof tic80) 2>/dev/null
+    ;;
+  *)
+    echo "Usage: $0 {start|stop}"
+    exit 1
+    ;;
+esac

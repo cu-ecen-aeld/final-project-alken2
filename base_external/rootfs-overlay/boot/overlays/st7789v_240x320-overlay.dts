@@ -1,0 +1,73 @@
+/*
+ * Device Tree overlay for Adafruit Mini PiTFT 2.0" 240x320 Display
+ *
+ * Orignally sourced from https://github.com/adafruit/Raspberry-Pi-Installer-Scripts/blob/main/overlays/st7789v_240x320-overlay.dts
+ * Modified rotate, width, and height to suit the needs of the project
+ */
+
+/dts-v1/;
+/plugin/;
+
+/ {
+        compatible = "brcm,bcm2835", "brcm,bcm2708", "brcm,bcm2709";
+
+        fragment@0 {
+                target = <&spi0>;
+                __overlay__ {
+                        status = "okay";
+
+                        spidev@0{
+                                status = "disabled";
+                        };
+
+                        spidev@1{
+                                status = "disabled";
+                        };
+                };
+        };
+
+        fragment@1 {
+                target = <&gpio>;
+                __overlay__ {
+                        pitft_pins: pitft_pins {
+                                brcm,pins = <25>;
+                                brcm,function = <1>; /* out */
+                                brcm,pull = <0>; /* none */
+                        };
+                };
+        };
+
+        fragment@2 {
+                target = <&spi0>;
+                __overlay__ {
+                        /* needed to avoid dtc warning */
+                        #address-cells = <1>;
+                        #size-cells = <0>;
+
+                        pitft: pitft@0{
+				compatible = "sitronix,st7789v";
+                                reg = <0>;
+                                pinctrl-names = "default";
+                                pinctrl-0 = <&pitft_pins>;
+                                spi-max-frequency = <32000000>;
+                                rotate = <0x0000005a>;
+                                width = <0x000000f0>;
+                                height = <0x00000140>;
+                                txbuflen = <32768>;
+                                buswidth = <8>;
+                                dc-gpios = <0x07 0x00000019 0x00000000>;
+                                led-gpios = <0x07 0x0000000c 0x00000000>;
+                                debug = <0>;
+                        };
+                };
+        };
+
+        __overrides__ {
+                speed =   <&pitft>,"spi-max-frequency:0";
+                rotate =  <&pitft>,"rotate:0";
+                width =   <&pitft>,"width:0";
+                height =  <&pitft>,"height:0";
+                fps =     <&pitft>,"fps:0";
+                debug =   <&pitft>,"debug:0";
+        };
+};
