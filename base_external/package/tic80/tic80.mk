@@ -16,7 +16,8 @@ TIC80_CONF_OPTS = \
     -DSDL2_DIR=$(STAGING_DIR)/usr/lib/cmake/SDL2 \
     -DSDL2_INCLUDE_DIR=$(STAGING_DIR)/usr/include/SDL2 \
     -DSDL2_LIBRARY=$(STAGING_DIR)/usr/lib/libSDL2.so \
-    -DBUILD_WITH_MRUBY=Off
+    -DBUILD_WITH_MRUBY=Off \
+	-DBUILD_WITH_JANET=Off
 
 define TIC80_PATCH_CMAKELISTS
 	sed -i '/THIRDPARTY_DIR.*sdl2/d' $(@D)/CMakeLists.txt

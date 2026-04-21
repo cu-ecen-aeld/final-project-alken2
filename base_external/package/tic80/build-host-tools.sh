@@ -38,7 +38,8 @@ cmake -S "$SRC_DIR" -B "$HOST_BUILD_DIR" \
     -DBUILD_STUB=Off \
     -DUSE_NAETT=Off \
     -DBUILD_WITH_MRUBY=Off \
-    -DBUILD_WITH_RUBY=Off
+    -DBUILD_WITH_RUBY=Off \
+    -DBUILD_WITH_JANET=Off
 
 cmake --build "$HOST_BUILD_DIR" --parallel
 
